@@ -1,4 +1,2 @@
 # TimeSheets
-AggreGate TimeSheets
-
-AggreGate Platform application
+Pet project on the AggreGate platform
