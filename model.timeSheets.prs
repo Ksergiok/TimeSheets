@@ -1351,7 +1351,7 @@ public class %ScriptClassNamePattern% implements FunctionImplementation
           <bindings>
             <binding>
               <reference>variable#choices</reference>
-              <expression>{.:variablesByMask({.:})}</expression>
+              <expression>{utilities:variablesByMask({.:})}</expression>
             </binding>
           </bindings>
           <validators contentType="base64">HEseHQ==</validators>

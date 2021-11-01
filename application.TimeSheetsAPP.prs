@@ -415,6 +415,10 @@
             <value name="resource">users.%.models_groups.TimeSheets</value>
             <value name="type">group.model</value>
           </record>
+          <record>
+            <value name="resource">users.%.devices.virtual</value>
+            <value name="type">device.virtual</value>
+          </record>
         </records>
       </table>
     </entry>

@@ -450,7 +450,7 @@
                 </format>
                 <records>
                   <record>
-                    <value name="style">background-color:#262735; min-width:1280px; overflow-y:scroll; padding-left:20px; padding-right:20px;</value>
+                    <value name="style">background-color:#262735; min-width:1600px; overflow-y:scroll; padding-left:20px; padding-right:20px;</value>
                     <value name="visibleChildren">
                       <table>
                         <format maxRecords="2147483647">
@@ -734,11 +734,11 @@
                             <field description="Value" extendableSelectionValues="true" name="value" type="S">
                               <selectionValues>
                                 <option description="Mobile">320</option>
-                                <option description="Tablet">800</option>
-                                <option description="Laptop">1366</option>
                                 <option description="Full HD">1920</option>
-                                <option description="QHD">2560</option>
+                                <option description="Laptop">1366</option>
+                                <option description="Tablet">800</option>
                                 <option description="Ultra HD">3840</option>
+                                <option description="QHD">2560</option>
                               </selectionValues>
                               <defaultValue>320</defaultValue>
                             </field>
@@ -770,11 +770,11 @@
                             <field description="Value" extendableSelectionValues="true" name="value" type="S">
                               <selectionValues>
                                 <option description="Mobile">320</option>
-                                <option description="Tablet">800</option>
-                                <option description="Laptop">1366</option>
                                 <option description="Full HD">1920</option>
-                                <option description="QHD">2560</option>
+                                <option description="Laptop">1366</option>
+                                <option description="Tablet">800</option>
                                 <option description="Ultra HD">3840</option>
+                                <option description="QHD">2560</option>
                               </selectionValues>
                               <defaultValue>320</defaultValue>
                             </field>
@@ -2484,6 +2484,7 @@
                     <value name="name">button0</value>
                     <value name="gridx">12</value>
                     <value name="gridy">1</value>
+                    <value name="overflow">hidden</value>
                     <value name="style">margin-top:auto; margin-bottom:auto;</value>
                     <value name="gridBreakpoints">
                       <table>
@@ -2504,7 +2505,7 @@
                           <record>
                             <value name="breakpoint">fullHD</value>
                             <value name="style">style:margin-top:auto; margin-bottom:auto;;</value>
-                            <value name="containerStyle">gridx:12;gridy:1;gridWidth:1;gridHeight:1;overflow:auto;containerStyle:
+                            <value name="containerStyle">gridx:12;gridy:1;gridWidth:1;gridHeight:1;overflow:hidden;containerStyle:
 ;</value>
                           </record>
                         </records>
@@ -3055,10 +3056,10 @@
                             <field description="Button Action" name="buttonAction" type="S">
                               <selectionValues>
                                 <option description=""/>
-                                <option description="Edit">edit</option>
-                                <option description="Delete">delete</option>
                                 <option description="Cancel">cancel</option>
+                                <option description="Edit">edit</option>
                                 <option description="Apply">apply</option>
+                                <option description="Delete">delete</option>
                               </selectionValues>
                               <defaultValue/>
                             </field>
@@ -3366,32 +3367,32 @@
                             </field>
                             <field description="Header Text Behavior" name="headerTextBehavior" type="S">
                               <selectionValues>
+                                <option description="Word Wrap">wordWrap</option>
                                 <option description="Expand Column">expandColumn</option>
                                 <option description="Ellipsis">ellipsis</option>
-                                <option description="Word Wrap">wordWrap</option>
                               </selectionValues>
                               <defaultValue>expandColumn</defaultValue>
                             </field>
                             <field description="Word Break" name="wordBreak" type="S">
                               <selectionValues>
-                                <option description="Break All">break-all</option>
-                                <option description="Break Word">break-word</option>
                                 <option description="Don&apos;t Break">false</option>
+                                <option description="Break Word">break-word</option>
+                                <option description="Break All">break-all</option>
                               </selectionValues>
                               <defaultValue>false</defaultValue>
                             </field>
                             <field description="Body Text Align Horizontal" name="textAlignHorizontal" type="S">
                               <selectionValues>
-                                <option description="Center">center</option>
                                 <option description="Left">left</option>
+                                <option description="Center">center</option>
                                 <option description="Right">right</option>
                               </selectionValues>
                               <defaultValue>center</defaultValue>
                             </field>
                             <field description="Header Text Align Horizontal" name="textAlignHeaderHorizontal" type="S">
                               <selectionValues>
-                                <option description="Center">center</option>
                                 <option description="Left">left</option>
+                                <option description="Center">center</option>
                                 <option description="Right">right</option>
                               </selectionValues>
                               <defaultValue>center</defaultValue>
