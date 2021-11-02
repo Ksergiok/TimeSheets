@@ -416,8 +416,8 @@
             <value name="type">group.model</value>
           </record>
           <record>
-            <value name="resource">users.%.devices.virtual</value>
-            <value name="type">device.virtual</value>
+            <value name="resource">users.%.models.eventHandler</value>
+            <value name="type">model</value>
           </record>
         </records>
       </table>
