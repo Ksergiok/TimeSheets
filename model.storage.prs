@@ -401,14 +401,7 @@
         </format>
         <records>
           <record>
-            <value name="name">timeSheets</value>
-            <value name="type">2</value>
-            <value name="validityExpression">{.:info$type} == &quot;user&quot;</value>
-            <value name="containerType">timeSheets</value>
-            <value name="containerTypeDescription">TimeSheets</value>
-            <value name="containerName">timeSheets</value>
-            <value name="objectType">timeSheet</value>
-            <value name="objectTypeDescription">TimeSheet</value>
+            <value name="name">storage</value>
           </record>
         </records>
       </table>
@@ -2081,7 +2074,7 @@ public class %ScriptClassNamePattern% implements FunctionImplementation
         </format>
         <records>
           <record>
-            <value name="name">timeSheet</value>
+            <value name="name">operations</value>
             <value name="format">
               <table>
                 <format maxRecords="1" minRecords="1">
@@ -2486,6 +2479,24 @@ public class %ScriptClassNamePattern% implements FunctionImplementation
                           <validators contentType="base64">HEseHQ==</validators>
                         </format>
                         <records>
+                          <record>
+                            <value name="name">user</value>
+                            <value name="type">S</value>
+                            <value name="editorOptions">
+                              <table>
+                                <format maxRecords="1" minRecords="1">
+                                  <fields>
+                                    <field description="Editor Options" name="options" type="S">
+                                      <defaultValue/>
+                                    </field>
+                                  </fields>
+                                </format>
+                                <records>
+                                  <record/>
+                                </records>
+                              </table>
+                            </value>
+                          </record>
                           <record>
                             <value name="name">date</value>
                             <value name="type">D</value>

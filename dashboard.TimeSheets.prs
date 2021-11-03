@@ -21,19 +21,22 @@
               <defaultValue/>
             </field>
             <field description="Layout" name="layout" readonly="true" type="I">
-              <selectionValues>
-                <option description="Dockable">0</option>
-                <option description="Scrollable">1</option>
-                <option description="Grid">2</option>
-              </selectionValues>
               <help>The field allows to specify the dashboard layout: dockable or scrollable.</help>
               <group>Window Properties</group>
-              <defaultValue>2</defaultValue>
+              <defaultValue>0</defaultValue>
             </field>
             <field description="Column Count" name="columns" type="I">
               <help>The field defines a number of columns. The option is relevant to scrollable dashboards only.</help>
               <group>Window Properties</group>
               <defaultValue>3</defaultValue>
+            </field>
+            <field description="Destination" name="destination" type="I">
+              <selectionValues>
+                <option description="Web">0</option>
+                <option description="Desktop">1</option>
+              </selectionValues>
+              <help>The field defines the dashboard destination: Web or Desktop.</help>
+              <defaultValue>0</defaultValue>
             </field>
             <field description="Type" name="type" type="I">
               <selectionValues>
@@ -138,6 +141,10 @@
           </fields>
           <bindings>
             <binding>
+              <reference>layout#choices</reference>
+              <expression>{utilities:layoutsByDestination(&apos;{destination}&apos;)}</expression>
+            </binding>
+            <binding>
               <reference>columns#hidden</reference>
               <expression>{layout} != 1</expression>
             </binding>
@@ -210,6 +217,7 @@
         <records>
           <record>
             <value name="name">TimeSheets</value>
+            <value name="layout">2</value>
           </record>
         </records>
       </table>
@@ -698,14 +706,19 @@
                           <record>
                             <value name="bindingId">4445799630146420736</value>
                             <value name="target">form/dataTableEditor0:dataTable</value>
-                            <value name="expression">callFunction(
+                            <value name="expression">sort(
+callFunction(
 	&quot;users.admin.models.interface&quot;
 	,&quot;getTimeSheet&quot;
 	,user()
+)
+,&quot;date&quot;
+,0
 )</value>
-                            <value name="activator">form/button0:mouseClicked@</value>
+                            <value name="activator">users.admin.models.eventHandler:recordAdded@</value>
                             <value name="onstartup">1</value>
                             <value name="onevent">1</value>
+                            <value name="period">5000</value>
                           </record>
                           <record>
                             <value name="bindingId">4608835501264443392</value>
@@ -731,16 +744,21 @@
 &quot;users.admin.models.interface&quot;
 ,&quot;addOperation&quot;
 ,user()
-,now()
-,&quot;0&quot;
-,&quot;1&quot;
-,&quot;2&quot;
-,&quot;3&quot;
-,&quot;4&quot;
-,&quot;5&quot;
+,{form/dateTimePicker0:startDate$startDate}
+,{form/comboBox1:currentOptions$value}
+,{form/timePicker0:value$value}
+,{form/comboBox0:currentOptions$value}
+,{form/textArea0:text$text}
+,{form/textArea1:text$text}
 )</value>
                             <value name="activator">form/button0:mouseClicked@</value>
                             <value name="onevent">1</value>
+                          </record>
+                          <record>
+                            <value name="bindingId">7754237271235262464</value>
+                            <value name="target">form/dataTableEditor1:dataTable</value>
+                            <value name="expression">{users.admin.models.interface:getCompanies()}</value>
+                            <value name="onstartup">1</value>
                           </record>
                         </records>
                       </table>
@@ -1247,7 +1265,6 @@
                         </records>
                       </table>
                     </value>
-                    <value name="routable">1</value>
                     <value name="activeTab">tab1</value>
                     <value name="externalButtons">
                       <table>
@@ -1256,10 +1273,7 @@
                             <field description="ID" name="id" type="S">
                               <defaultValue/>
                             </field>
-                            <field description="Name" name="name" type="S">
-                              <defaultValue/>
-                            </field>
-                            <field description="Order" name="order" type="S">
+                            <field description="Description" name="description" type="S">
                               <defaultValue/>
                             </field>
                             <field description="Image" name="image" type="A">
@@ -1268,9 +1282,6 @@
                                   <nullValue/>
                                 </data>
                               </defaultValue>
-                            </field>
-                            <field description="File Extension" name="fileExtension" type="S">
-                              <defaultValue/>
                             </field>
                             <field description="Style" editor="textarea" name="buttonStyle" nullable="true" type="S">
                               <defaultValue/>
@@ -2018,7 +2029,7 @@
                         </table>
                       </defaultValue>
                     </field>
-                    <field description="Selected Items" name="currentOptions" type="T">
+                    <field description="Selected Options" name="currentOptions" type="T">
                       <defaultValue>
                         <table>
                           <format maxRecords="2147483647"/>
@@ -2113,12 +2124,6 @@
                         <format maxRecords="2147483647">
                           <fields>
                             <field description="Value" keyfield="true" name="value" type="S">
-                              <defaultValue/>
-                            </field>
-                            <field description="Label" name="label" type="S">
-                              <defaultValue/>
-                            </field>
-                            <field description="Tooltip" name="tooltip" type="S">
                               <defaultValue/>
                             </field>
                           </fields>
@@ -2480,15 +2485,6 @@
                       <group>default</group>
                       <defaultValue>0</defaultValue>
                     </field>
-                    <field description="Hover Style" editor="text" name="hoverStyle" type="S">
-                      <defaultValue/>
-                    </field>
-                    <field description="Active Style" editor="text" name="activeStyle" type="S">
-                      <defaultValue/>
-                    </field>
-                    <field description="Focus Style" editor="text" name="focusStyle" type="S">
-                      <defaultValue/>
-                    </field>
                     <field description="File Extension" hidden="true" name="fileExtension" type="S">
                       <defaultValue/>
                     </field>
@@ -2667,7 +2663,7 @@
                         </table>
                       </defaultValue>
                     </field>
-                    <field description="Selected Items" name="currentOptions" type="T">
+                    <field description="Selected Options" name="currentOptions" type="T">
                       <defaultValue>
                         <table>
                           <format maxRecords="2147483647"/>
@@ -2738,7 +2734,7 @@
                       </table>
                     </value>
                     <value name="containerStyle">z-index:1;</value>
-                    <value name="placeholder">Compani</value>
+                    <value name="placeholder">Company</value>
                     <value name="multi">0</value>
                     <value name="maxTagCount">10</value>
                     <value name="options">
@@ -2763,12 +2759,6 @@
                         <format maxRecords="2147483647">
                           <fields>
                             <field description="Value" keyfield="true" name="value" type="S">
-                              <defaultValue/>
-                            </field>
-                            <field description="Label" name="label" type="S">
-                              <defaultValue/>
-                            </field>
-                            <field description="Tooltip" name="tooltip" type="S">
                               <defaultValue/>
                             </field>
                           </fields>
@@ -2845,33 +2835,33 @@
                     <field description="Container Style" editor="textarea" name="containerStyle" type="S">
                       <defaultValue/>
                     </field>
-                    <field description="Enable" name="additionalActionEnable" type="B">
+                    <field description="Enable Kebab Menu" name="additionalActionEnable" type="B">
                       <defaultValue>0</defaultValue>
                     </field>
-                    <field description="Show in row" name="additionalActionShowInRow" type="B">
+                    <field description="Show Menu Items Inside Row" name="additionalActionShowInRow" type="B">
                       <defaultValue>0</defaultValue>
                     </field>
-                    <field description="Icon" name="additionalActionIcon" type="A">
+                    <field description="Kebab Menu Icon" name="additionalActionIcon" type="A">
                       <defaultValue>
                         <data>
                           <nullValue/>
                         </data>
                       </defaultValue>
                     </field>
-                    <field description="Additional Action Width" name="additionalActionWidth" type="I">
+                    <field description="Kebab Menu Width" name="additionalActionWidth" type="I">
                       <defaultValue>50</defaultValue>
                     </field>
                     <field description="additionalActionIconExtension" hidden="true" name="additionalActionIconExtension" type="S">
                       <defaultValue/>
                     </field>
-                    <field description="Settings" name="additionalActionSettings" type="T">
+                    <field description="Kebab Menu Items" name="additionalActionSettings" type="T">
                       <defaultValue>
                         <table>
                           <format maxRecords="2147483647"/>
                         </table>
                       </defaultValue>
                     </field>
-                    <field description="Style" editor="textarea" name="additionalActionStyle" type="S">
+                    <field description="Kebab Menu Style" editor="textarea" name="additionalActionStyle" type="S">
                       <defaultValue/>
                     </field>
                     <field description="Enable Search" name="enableSearch" type="B">
@@ -2890,13 +2880,13 @@
                     <field description="Read Only" name="readOnly" type="B">
                       <defaultValue>0</defaultValue>
                     </field>
-                    <field description="Add Record Using Event" name="addRecordUsingEvent" type="B">
+                    <field description="Generate Row Added Events" name="generateRowAddedEvents" type="B">
                       <defaultValue>0</defaultValue>
                     </field>
-                    <field description="Delete Record Using Event" name="deleteRecordUsingEvent" type="B">
+                    <field description="Generate Row Removed Events" name="generateRowRemovedEvents" type="B">
                       <defaultValue>0</defaultValue>
                     </field>
-                    <field description="Update Cell Using Event" name="updateCellUsingEvent" type="B">
+                    <field description="Generate Cell Updated Events" name="generateCellUpdatedEvents" type="B">
                       <defaultValue>0</defaultValue>
                     </field>
                     <field description="Multiple Column Sorting" name="multipleSorting" type="B">
@@ -2909,7 +2899,7 @@
                       <validators contentType="base64">HEweMSAyMTQ3NDgzNjQ3HQ==</validators>
                       <defaultValue>100</defaultValue>
                     </field>
-                    <field description="Custom Paginator Values" name="customPaginatorValues" type="T">
+                    <field description="Custom &apos;Row per Page&apos; Selection Values" name="customPaginatorValues" type="T">
                       <defaultValue>
                         <table>
                           <format maxRecords="2147483647"/>
@@ -2962,16 +2952,10 @@
                     <field description="Enable Row Selection" name="checkRows" type="B">
                       <defaultValue>1</defaultValue>
                     </field>
-                    <field description="Column To Define Row Lock" name="columnToDefineRowLock" type="S">
+                    <field description="Column Enabling Row Read-only Mode" name="columnToDefineRowLock" type="S">
                       <defaultValue/>
                     </field>
-                    <field description="Column To Define Kebab Lock" name="columnToDefineKebabLock" type="S">
-                      <defaultValue/>
-                    </field>
-                    <field description="Column To Define Name For Nested Table" name="columnToDefineNameForNestedTable" type="S">
-                      <defaultValue/>
-                    </field>
-                    <field description="Tooltip Style" editor="textarea" name="tooltipStyle" type="S">
+                    <field description="Column Enabling Kebab Menu" name="columnToDefineKebabLock" type="S">
                       <defaultValue/>
                     </field>
                     <field description="Allow Column Resizing" name="resizableColumn" type="B">
@@ -2985,10 +2969,6 @@
                     <field description="Row Addition Confirmation" name="confirmActionAdd" type="B">
                       <group>default</group>
                       <defaultValue>1</defaultValue>
-                    </field>
-                    <field description="Fixed Position of Left Column" name="fixedLeftColumn" type="B">
-                      <group>default</group>
-                      <defaultValue>0</defaultValue>
                     </field>
                     <field description="Filter Icon" name="filterIcon" type="A">
                       <defaultValue>
@@ -3056,10 +3036,10 @@
                       <table>
                         <format maxRecords="2147483647">
                           <fields>
-                            <field name="uid" type="S">
+                            <field description="UID" name="uid" type="S">
                               <defaultValue/>
                             </field>
-                            <field name="desc" type="S">
+                            <field description="Description" name="desc" type="S">
                               <defaultValue/>
                             </field>
                             <field description="Icon" name="icon" type="A">
@@ -3069,27 +3049,27 @@
                                 </data>
                               </defaultValue>
                             </field>
-                            <field description="Icon Hover" name="iconHover" type="A">
+                            <field description="Hover Icon" name="iconHover" type="A">
                               <defaultValue>
                                 <data>
                                   <nullValue/>
                                 </data>
                               </defaultValue>
                             </field>
-                            <field description="Icon active" name="iconActive" type="A">
+                            <field description="Active Icon" name="iconActive" type="A">
                               <defaultValue>
                                 <data>
                                   <nullValue/>
                                 </data>
                               </defaultValue>
                             </field>
-                            <field description="Button Action" name="buttonAction" type="S">
+                            <field description="Action" name="buttonAction" type="S">
                               <selectionValues>
                                 <option description=""/>
-                                <option description="Cancel">cancel</option>
                                 <option description="Edit">edit</option>
-                                <option description="Apply">apply</option>
                                 <option description="Delete">delete</option>
+                                <option description="Cancel">cancel</option>
+                                <option description="Apply">apply</option>
                               </selectionValues>
                               <defaultValue/>
                             </field>
@@ -3101,24 +3081,6 @@
                             </field>
                           </fields>
                         </format>
-                      </table>
-                    </value>
-                    <value name="dataTable">
-                      <table>
-                        <format maxRecords="1" minRecords="1">
-                          <fields>
-                            <field description="Data Table" name="dataTable" type="T">
-                              <defaultValue>
-                                <table>
-                                  <format maxRecords="2147483647"/>
-                                </table>
-                              </defaultValue>
-                            </field>
-                          </fields>
-                        </format>
-                        <records>
-                          <record/>
-                        </records>
                       </table>
                     </value>
                     <value name="readOnly">1</value>
@@ -3134,6 +3096,7 @@
                         </format>
                       </table>
                     </value>
+                    <value name="showRowsPerPageSelector">1</value>
                     <value name="format">
                       <table>
                         <format maxRecords="1" minRecords="1">
@@ -3373,11 +3336,14 @@
                       <table>
                         <format maxRecords="2147483647">
                           <fields>
-                            <field description="Key" name="key" type="I">
+                            <field description="Index" name="index" type="I">
                               <defaultValue>0</defaultValue>
                             </field>
                           </fields>
                         </format>
+                        <records>
+                          <record/>
+                        </records>
                       </table>
                     </value>
                     <value name="columnsSettings">
@@ -3397,37 +3363,37 @@
                             </field>
                             <field description="Header Text Behavior" name="headerTextBehavior" type="S">
                               <selectionValues>
-                                <option description="Word Wrap">wordWrap</option>
                                 <option description="Expand Column">expandColumn</option>
                                 <option description="Ellipsis">ellipsis</option>
+                                <option description="Word Wrap">wordWrap</option>
                               </selectionValues>
                               <defaultValue>expandColumn</defaultValue>
                             </field>
                             <field description="Word Break" name="wordBreak" type="S">
                               <selectionValues>
-                                <option description="Don&apos;t Break">false</option>
-                                <option description="Break Word">break-word</option>
                                 <option description="Break All">break-all</option>
+                                <option description="Break Word">break-word</option>
+                                <option description="Don&apos;t Break">false</option>
                               </selectionValues>
                               <defaultValue>false</defaultValue>
                             </field>
-                            <field description="Body Text Align Horizontal" name="textAlignHorizontal" type="S">
+                            <field description="Cell Text Horizontal Alignment" name="textAlignHorizontal" type="S">
                               <selectionValues>
-                                <option description="Left">left</option>
                                 <option description="Center">center</option>
+                                <option description="Left">left</option>
                                 <option description="Right">right</option>
                               </selectionValues>
                               <defaultValue>center</defaultValue>
                             </field>
-                            <field description="Header Text Align Horizontal" name="textAlignHeaderHorizontal" type="S">
+                            <field description="Header Text Horizontal Alignment" name="textAlignHeaderHorizontal" type="S">
                               <selectionValues>
-                                <option description="Left">left</option>
                                 <option description="Center">center</option>
+                                <option description="Left">left</option>
                                 <option description="Right">right</option>
                               </selectionValues>
                               <defaultValue>center</defaultValue>
                             </field>
-                            <field description="Body Text Align Vertical" name="textAlignVertical" type="S">
+                            <field description="Cell Text Vertical Alignment" name="textAlignVertical" type="S">
                               <selectionValues>
                                 <option description="Bottom">bottom </option>
                                 <option description="Middle">middle</option>
@@ -3435,7 +3401,7 @@
                               </selectionValues>
                               <defaultValue>middle</defaultValue>
                             </field>
-                            <field description="Header Text Align Vertical" name="textAlignHeaderVertical" type="S">
+                            <field description="Header Text Vertical Alignment" name="textAlignHeaderVertical" type="S">
                               <selectionValues>
                                 <option description="Bottom">bottom </option>
                                 <option description="Middle">middle</option>
@@ -3454,10 +3420,10 @@
                                 <table>
                                   <format maxRecords="2147483647">
                                     <fields>
-                                      <field name="value" type="S">
+                                      <field description="Value" name="value" type="S">
                                         <defaultValue/>
                                       </field>
-                                      <field name="text" type="S">
+                                      <field description="Description" name="text" type="S">
                                         <defaultValue/>
                                       </field>
                                     </fields>
@@ -3472,8 +3438,6 @@
                         </format>
                       </table>
                     </value>
-                    <value name="checkRows">0</value>
-                    <value name="resizableColumn">0</value>
                     <value name="confirmActionDelete">0</value>
                     <value name="confirmActionAdd">0</value>
                   </record>
@@ -4091,15 +4055,6 @@
                     <field description="Disabled" name="disabled" type="B">
                       <group>default</group>
                       <defaultValue>0</defaultValue>
-                    </field>
-                    <field description="Hover Style" editor="text" name="hoverStyle" type="S">
-                      <defaultValue/>
-                    </field>
-                    <field description="Active Style" editor="text" name="activeStyle" type="S">
-                      <defaultValue/>
-                    </field>
-                    <field description="Focus Style" editor="text" name="focusStyle" type="S">
-                      <defaultValue/>
                     </field>
                     <field description="File Extension" hidden="true" name="fileExtension" type="S">
                       <defaultValue/>
@@ -4770,33 +4725,33 @@ margin-top:auto;margin-bottom:auto;</value>
                     <field description="Container Style" editor="textarea" name="containerStyle" type="S">
                       <defaultValue/>
                     </field>
-                    <field description="Enable" name="additionalActionEnable" type="B">
+                    <field description="Enable Kebab Menu" name="additionalActionEnable" type="B">
                       <defaultValue>0</defaultValue>
                     </field>
-                    <field description="Show in row" name="additionalActionShowInRow" type="B">
+                    <field description="Show Menu Items Inside Row" name="additionalActionShowInRow" type="B">
                       <defaultValue>0</defaultValue>
                     </field>
-                    <field description="Icon" name="additionalActionIcon" type="A">
+                    <field description="Kebab Menu Icon" name="additionalActionIcon" type="A">
                       <defaultValue>
                         <data>
                           <nullValue/>
                         </data>
                       </defaultValue>
                     </field>
-                    <field description="Additional Action Width" name="additionalActionWidth" type="I">
+                    <field description="Kebab Menu Width" name="additionalActionWidth" type="I">
                       <defaultValue>50</defaultValue>
                     </field>
                     <field description="additionalActionIconExtension" hidden="true" name="additionalActionIconExtension" type="S">
                       <defaultValue/>
                     </field>
-                    <field description="Settings" name="additionalActionSettings" type="T">
+                    <field description="Kebab Menu Items" name="additionalActionSettings" type="T">
                       <defaultValue>
                         <table>
                           <format maxRecords="2147483647"/>
                         </table>
                       </defaultValue>
                     </field>
-                    <field description="Style" editor="textarea" name="additionalActionStyle" type="S">
+                    <field description="Kebab Menu Style" editor="textarea" name="additionalActionStyle" type="S">
                       <defaultValue/>
                     </field>
                     <field description="Enable Search" name="enableSearch" type="B">
@@ -4815,13 +4770,13 @@ margin-top:auto;margin-bottom:auto;</value>
                     <field description="Read Only" name="readOnly" type="B">
                       <defaultValue>0</defaultValue>
                     </field>
-                    <field description="Add Record Using Event" name="addRecordUsingEvent" type="B">
+                    <field description="Generate Row Added Events" name="generateRowAddedEvents" type="B">
                       <defaultValue>0</defaultValue>
                     </field>
-                    <field description="Delete Record Using Event" name="deleteRecordUsingEvent" type="B">
+                    <field description="Generate Row Removed Events" name="generateRowRemovedEvents" type="B">
                       <defaultValue>0</defaultValue>
                     </field>
-                    <field description="Update Cell Using Event" name="updateCellUsingEvent" type="B">
+                    <field description="Generate Cell Updated Events" name="generateCellUpdatedEvents" type="B">
                       <defaultValue>0</defaultValue>
                     </field>
                     <field description="Multiple Column Sorting" name="multipleSorting" type="B">
@@ -4834,7 +4789,7 @@ margin-top:auto;margin-bottom:auto;</value>
                       <validators contentType="base64">HEweMSAyMTQ3NDgzNjQ3HQ==</validators>
                       <defaultValue>100</defaultValue>
                     </field>
-                    <field description="Custom Paginator Values" name="customPaginatorValues" type="T">
+                    <field description="Custom &apos;Row per Page&apos; Selection Values" name="customPaginatorValues" type="T">
                       <defaultValue>
                         <table>
                           <format maxRecords="2147483647"/>
@@ -4887,16 +4842,10 @@ margin-top:auto;margin-bottom:auto;</value>
                     <field description="Enable Row Selection" name="checkRows" type="B">
                       <defaultValue>1</defaultValue>
                     </field>
-                    <field description="Column To Define Row Lock" name="columnToDefineRowLock" type="S">
+                    <field description="Column Enabling Row Read-only Mode" name="columnToDefineRowLock" type="S">
                       <defaultValue/>
                     </field>
-                    <field description="Column To Define Kebab Lock" name="columnToDefineKebabLock" type="S">
-                      <defaultValue/>
-                    </field>
-                    <field description="Column To Define Name For Nested Table" name="columnToDefineNameForNestedTable" type="S">
-                      <defaultValue/>
-                    </field>
-                    <field description="Tooltip Style" editor="textarea" name="tooltipStyle" type="S">
+                    <field description="Column Enabling Kebab Menu" name="columnToDefineKebabLock" type="S">
                       <defaultValue/>
                     </field>
                     <field description="Allow Column Resizing" name="resizableColumn" type="B">
@@ -4910,10 +4859,6 @@ margin-top:auto;margin-bottom:auto;</value>
                     <field description="Row Addition Confirmation" name="confirmActionAdd" type="B">
                       <group>default</group>
                       <defaultValue>1</defaultValue>
-                    </field>
-                    <field description="Fixed Position of Left Column" name="fixedLeftColumn" type="B">
-                      <group>default</group>
-                      <defaultValue>0</defaultValue>
                     </field>
                     <field description="Filter Icon" name="filterIcon" type="A">
                       <defaultValue>
@@ -4982,10 +4927,10 @@ margin-top:auto;margin-bottom:auto;</value>
                       <table>
                         <format maxRecords="2147483647">
                           <fields>
-                            <field name="uid" type="S">
+                            <field description="UID" name="uid" type="S">
                               <defaultValue/>
                             </field>
-                            <field name="desc" type="S">
+                            <field description="Description" name="desc" type="S">
                               <defaultValue/>
                             </field>
                             <field description="Icon" name="icon" type="A">
@@ -4995,21 +4940,21 @@ margin-top:auto;margin-bottom:auto;</value>
                                 </data>
                               </defaultValue>
                             </field>
-                            <field description="Icon Hover" name="iconHover" type="A">
+                            <field description="Hover Icon" name="iconHover" type="A">
                               <defaultValue>
                                 <data>
                                   <nullValue/>
                                 </data>
                               </defaultValue>
                             </field>
-                            <field description="Icon active" name="iconActive" type="A">
+                            <field description="Active Icon" name="iconActive" type="A">
                               <defaultValue>
                                 <data>
                                   <nullValue/>
                                 </data>
                               </defaultValue>
                             </field>
-                            <field description="Button Action" name="buttonAction" type="S">
+                            <field description="Action" name="buttonAction" type="S">
                               <selectionValues>
                                 <option description=""/>
                                 <option description="Edit">edit</option>
@@ -5029,25 +4974,8 @@ margin-top:auto;margin-bottom:auto;</value>
                         </format>
                       </table>
                     </value>
-                    <value name="dataTable">
-                      <table>
-                        <format maxRecords="1" minRecords="1">
-                          <fields>
-                            <field description="Data Table" name="dataTable" type="T">
-                              <defaultValue>
-                                <table>
-                                  <format maxRecords="2147483647"/>
-                                </table>
-                              </defaultValue>
-                            </field>
-                          </fields>
-                        </format>
-                        <records>
-                          <record/>
-                        </records>
-                      </table>
-                    </value>
-                    <value name="addRecordUsingEvent">1</value>
+                    <value name="readOnly">1</value>
+                    <value name="showToolbar">0</value>
                     <value name="customPaginatorValues">
                       <table>
                         <format maxRecords="2147483647">
@@ -5298,7 +5226,7 @@ margin-top:auto;margin-bottom:auto;</value>
                       <table>
                         <format maxRecords="2147483647">
                           <fields>
-                            <field description="Key" name="key" type="I">
+                            <field description="Index" name="index" type="I">
                               <defaultValue>0</defaultValue>
                             </field>
                           </fields>
@@ -5336,7 +5264,7 @@ margin-top:auto;margin-bottom:auto;</value>
                               </selectionValues>
                               <defaultValue>false</defaultValue>
                             </field>
-                            <field description="Body Text Align Horizontal" name="textAlignHorizontal" type="S">
+                            <field description="Cell Text Horizontal Alignment" name="textAlignHorizontal" type="S">
                               <selectionValues>
                                 <option description="Center">center</option>
                                 <option description="Left">left</option>
@@ -5344,7 +5272,7 @@ margin-top:auto;margin-bottom:auto;</value>
                               </selectionValues>
                               <defaultValue>center</defaultValue>
                             </field>
-                            <field description="Header Text Align Horizontal" name="textAlignHeaderHorizontal" type="S">
+                            <field description="Header Text Horizontal Alignment" name="textAlignHeaderHorizontal" type="S">
                               <selectionValues>
                                 <option description="Center">center</option>
                                 <option description="Left">left</option>
@@ -5352,7 +5280,7 @@ margin-top:auto;margin-bottom:auto;</value>
                               </selectionValues>
                               <defaultValue>center</defaultValue>
                             </field>
-                            <field description="Body Text Align Vertical" name="textAlignVertical" type="S">
+                            <field description="Cell Text Vertical Alignment" name="textAlignVertical" type="S">
                               <selectionValues>
                                 <option description="Bottom">bottom </option>
                                 <option description="Middle">middle</option>
@@ -5360,7 +5288,7 @@ margin-top:auto;margin-bottom:auto;</value>
                               </selectionValues>
                               <defaultValue>middle</defaultValue>
                             </field>
-                            <field description="Header Text Align Vertical" name="textAlignHeaderVertical" type="S">
+                            <field description="Header Text Vertical Alignment" name="textAlignHeaderVertical" type="S">
                               <selectionValues>
                                 <option description="Bottom">bottom </option>
                                 <option description="Middle">middle</option>
@@ -5379,10 +5307,10 @@ margin-top:auto;margin-bottom:auto;</value>
                                 <table>
                                   <format maxRecords="2147483647">
                                     <fields>
-                                      <field name="value" type="S">
+                                      <field description="Value" name="value" type="S">
                                         <defaultValue/>
                                       </field>
-                                      <field name="text" type="S">
+                                      <field description="Description" name="text" type="S">
                                         <defaultValue/>
                                       </field>
                                     </fields>

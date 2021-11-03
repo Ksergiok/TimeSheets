@@ -1518,9 +1518,17 @@ public class %ScriptClassNamePattern% implements FunctionImplementation
                 </records>
               </table>
             </value>
-            <value name="expresion">getVariable(
-	&quot;users.&quot; + {user} + &quot;.timeSheets.timeSheet&quot;
-	,&quot;timeSheet&quot;
+            <value name="expresion">
+
+removeColumns(
+	filter(
+		getVariable(
+			&quot;users.admin.models.storage&quot;
+			,&quot;operations&quot;
+		)
+		,&quot;{user} ==&quot; + &quot;&apos;&quot; + {user} + &quot;&apos;&quot;
+	)
+	,&quot;user&quot;
 )</value>
           </record>
           <record>
@@ -2093,18 +2101,16 @@ public class %ScriptClassNamePattern% implements FunctionImplementation
                 </records>
               </table>
             </value>
-            <value name="expresion">setVariable(
-	&quot;users.&quot;+{user}+&quot;.timeSheets.timeSheet&quot;
-	, &quot;timeSheet&quot;
-	,addRecords(
-		getVariable(&quot;users.&quot;+{user}+&quot;.timeSheets.timeSheet&quot;, &quot;timeSheet&quot;)
-		,{date}
-		,{company}
-		,{duration}
-		,{activity}
-		,{description}
-		,{result}
-	)
+            <value name="expresion">callFunction(
+	dc()
+	,&quot;addOperationRS&quot;
+	,{user}
+	,{date}
+	,{company}
+	,{duration}
+	,{activity}
+	,{description}
+	,{result}
 )
 </value>
           </record>
@@ -2767,6 +2773,104 @@ public class %ScriptClassNamePattern% implements FunctionImplementation
           </fields>
           <validators contentType="base64">HEseHQ==</validators>
         </format>
+        <records>
+          <record>
+            <value name="name">addOperationRS</value>
+            <value name="rules">
+              <table>
+                <format maxRecords="2147483647" reorderable="true">
+                  <fields>
+                    <field description="Target" extendableSelectionValues="true" name="target" type="S">
+                      <selectionValues>
+                        <option description="Final Rule Set Result"/>
+                      </selectionValues>
+                      <help>Can be either the Final Rule Set Result (i.e. the result of the whole rule set) or the name of the rule set environment variable defined or redefined by the rule.</help>
+                      <defaultValue/>
+                    </field>
+                    <field description="Expression" editor="expression" name="expression" type="S">
+                      <help>The expression evaluation result is written into the Target.</help>
+                      <defaultValue/>
+                    </field>
+                    <field description="Condition" editor="expression" name="condition" type="S">
+                      <help>The optional expression that should result to a Boolean value, i.e. true or false. The rule expression evaluation is skipped if the condition expression evaluation results to false.</help>
+                      <defaultValue/>
+                    </field>
+                    <field description="Comment" editor="textarea" name="comment" type="S">
+                      <help>Any notes about the rule purpose.</help>
+                      <defaultValue/>
+                    </field>
+                  </fields>
+                  <bindings>
+                    <binding>
+                      <reference>expression#options</reference>
+                      <expression>expressionEditorOptions({childInfo$type[0]} == 0 ? {childInfo$defaultContext[0]} : {.:})</expression>
+                    </binding>
+                    <binding>
+                      <reference>condition#options</reference>
+                      <expression>expressionEditorOptions({childInfo$type[0]} == 0 ? {childInfo$defaultContext[0]} : {.:})</expression>
+                    </binding>
+                  </bindings>
+                </format>
+                <records>
+                  <record>
+                    <value name="target">user</value>
+                    <value name="expression">{0}</value>
+                  </record>
+                  <record>
+                    <value name="target">date</value>
+                    <value name="expression">{1}</value>
+                  </record>
+                  <record>
+                    <value name="target">company</value>
+                    <value name="expression">{2}</value>
+                  </record>
+                  <record>
+                    <value name="target">duration</value>
+                    <value name="expression">{3}</value>
+                  </record>
+                  <record>
+                    <value name="target">activity</value>
+                    <value name="expression">{4}</value>
+                  </record>
+                  <record>
+                    <value name="target">description</value>
+                    <value name="expression">{5}</value>
+                  </record>
+                  <record>
+                    <value name="target">result</value>
+                    <value name="expression">{6}</value>
+                  </record>
+                  <record>
+                    <value name="target">added</value>
+                    <value name="expression">setVariable(
+	&quot;users.admin.models.storage&quot;
+	,&quot;operations&quot;
+	,addRecords(
+		getVariable(&quot;users.admin.models.storage&quot;,&quot;operations&quot;)
+		,{env/user}
+		,{env/date}
+		,{env/company}
+		,{env/duration}
+		,{env/activity}
+		,{env/description}
+		,{env/result}
+	)
+)
+</value>
+                  </record>
+                  <record>
+                    <value name="expression">fireEvent(
+	&quot;users.admin.models.eventHandler&quot;
+	, &quot;recordAdded&quot;
+	,0
+
+)</value>
+                  </record>
+                </records>
+              </table>
+            </value>
+          </record>
+        </records>
       </table>
     </entry>
     <entry>

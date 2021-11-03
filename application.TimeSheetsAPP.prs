@@ -310,6 +310,16 @@
             </binding>
           </bindings>
         </format>
+        <records>
+          <record>
+            <value name="context">users.%.models.references</value>
+            <value name="variable">companies</value>
+          </record>
+          <record>
+            <value name="context">users.%.models.references</value>
+            <value name="variable">activities</value>
+          </record>
+        </records>
       </table>
     </entry>
     <entry>
@@ -400,7 +410,7 @@
             <value name="type">dashboard</value>
           </record>
           <record>
-            <value name="resource">users.%.models.timeSheets</value>
+            <value name="resource">users.%.models.storage</value>
             <value name="type">model</value>
           </record>
           <record>
