@@ -470,37 +470,37 @@
                         </format>
                         <records>
                           <record>
-                            <value name="path">button0</value>
+                            <value name="path">buttonSaveRecord</value>
                           </record>
                           <record>
-                            <value name="path">button1</value>
+                            <value name="path">buttonLogOut</value>
                           </record>
                           <record>
                             <value name="path">checkBox0</value>
                           </record>
                           <record>
-                            <value name="path">comboBox0</value>
+                            <value name="path">comboBoxActivity</value>
                           </record>
                           <record>
-                            <value name="path">comboBox1</value>
+                            <value name="path">comboBoxCompany</value>
                           </record>
                           <record>
-                            <value name="path">dataTableEditor0</value>
+                            <value name="path">dataTableEditorTimeSheets</value>
                           </record>
                           <record>
-                            <value name="path">dataTableEditor1</value>
+                            <value name="path">dataTableEditorCompanies</value>
                           </record>
                           <record>
-                            <value name="path">dateTimePicker0</value>
+                            <value name="path">dateTimePickerActivityDate</value>
                           </record>
                           <record>
-                            <value name="path">htmlSnippet1</value>
+                            <value name="path">htmlSnippet</value>
                           </record>
                           <record>
-                            <value name="path">image0</value>
+                            <value name="path">imageLogo</value>
                           </record>
                           <record>
-                            <value name="path">label0</value>
+                            <value name="path">labelAppName</value>
                           </record>
                           <record>
                             <value name="path">panel0</value>
@@ -515,13 +515,13 @@
                             <value name="path">tabbedPanel</value>
                           </record>
                           <record>
-                            <value name="path">textArea0</value>
+                            <value name="path">textAreaDescription</value>
                           </record>
                           <record>
-                            <value name="path">textArea1</value>
+                            <value name="path">textAreaResult</value>
                           </record>
                           <record>
-                            <value name="path">timePicker0</value>
+                            <value name="path">timePickerDuration</value>
                           </record>
                         </records>
                       </table>
@@ -543,13 +543,13 @@
                             <value name="childContexts">panel0</value>
                           </record>
                           <record>
-                            <value name="childContexts">button1</value>
+                            <value name="childContexts">buttonLogOut</value>
                           </record>
                           <record>
-                            <value name="childContexts">image0</value>
+                            <value name="childContexts">imageLogo</value>
                           </record>
                           <record>
-                            <value name="childContexts">label0</value>
+                            <value name="childContexts">labelAppName</value>
                           </record>
                         </records>
                       </table>
@@ -693,7 +693,7 @@
                             <value name="bindingId">5313575464546082816</value>
                             <value name="expression">//{form/:logout()}
 {web/logout()}</value>
-                            <value name="activator">form/button1:mouseClicked@</value>
+                            <value name="activator">form/buttonLogOut:mouseClicked@</value>
                             <value name="onevent">1</value>
                           </record>
                           <record>
@@ -705,7 +705,7 @@
                           </record>
                           <record>
                             <value name="bindingId">4445799630146420736</value>
-                            <value name="target">form/dataTableEditor0:dataTable</value>
+                            <value name="target">form/dataTableEditorTimeSheets:dataTable</value>
                             <value name="expression">sort(
 callFunction(
 	&quot;users.admin.models.interface&quot;
@@ -722,7 +722,7 @@ callFunction(
                           </record>
                           <record>
                             <value name="bindingId">4608835501264443392</value>
-                            <value name="target">form/comboBox1:options</value>
+                            <value name="target">form/comboBoxCompany:options</value>
                             <value name="expression">callFunction(
 &quot;users.admin.models.interface&quot;
 ,&quot;getCompanies&quot;
@@ -731,7 +731,7 @@ callFunction(
                           </record>
                           <record>
                             <value name="bindingId">5309339706208440320</value>
-                            <value name="target">form/comboBox0:options</value>
+                            <value name="target">form/comboBoxActivity:options</value>
                             <value name="expression">callFunction(
 &quot;users.admin.models.interface&quot;
 ,&quot;getActivities&quot;
@@ -744,19 +744,19 @@ callFunction(
 &quot;users.admin.models.interface&quot;
 ,&quot;addOperation&quot;
 ,user()
-,{form/dateTimePicker0:startDate$startDate}
-,{form/comboBox1:currentOptions$value}
-,{form/timePicker0:value$value}
-,{form/comboBox0:currentOptions$value}
-,{form/textArea0:text$text}
-,{form/textArea1:text$text}
+,{form/dateTimePickerActivityDate:startDate$startDate}
+,{form/comboBoxCompany:currentOptions$value}
+,{form/timePickerDuration:value$value}
+,{form/comboBoxActivity:currentOptions$value}
+,{form/textAreaDescription:text$text}
+,{form/textAreaResult:text$text}
 )</value>
-                            <value name="activator">form/button0:mouseClicked@</value>
+                            <value name="activator">form/buttonSaveRecord:mouseClicked@</value>
                             <value name="onevent">1</value>
                           </record>
                           <record>
                             <value name="bindingId">7754237271235262464</value>
-                            <value name="target">form/dataTableEditor1:dataTable</value>
+                            <value name="target">form/dataTableEditorCompanies:dataTable</value>
                             <value name="expression">{users.admin.models.interface:getCompanies()}</value>
                             <value name="onstartup">1</value>
                           </record>
@@ -1504,28 +1504,28 @@ callFunction(
                         </format>
                         <records>
                           <record>
-                            <value name="childContexts">dateTimePicker0</value>
+                            <value name="childContexts">dateTimePickerActivityDate</value>
                           </record>
                           <record>
-                            <value name="childContexts">timePicker0</value>
+                            <value name="childContexts">timePickerDuration</value>
                           </record>
                           <record>
-                            <value name="childContexts">comboBox0</value>
+                            <value name="childContexts">comboBoxActivity</value>
                           </record>
                           <record>
-                            <value name="childContexts">textArea0</value>
+                            <value name="childContexts">textAreaDescription</value>
                           </record>
                           <record>
-                            <value name="childContexts">textArea1</value>
+                            <value name="childContexts">textAreaResult</value>
                           </record>
                           <record>
-                            <value name="childContexts">button0</value>
+                            <value name="childContexts">buttonSaveRecord</value>
                           </record>
                           <record>
-                            <value name="childContexts">comboBox1</value>
+                            <value name="childContexts">comboBoxCompany</value>
                           </record>
                           <record>
-                            <value name="childContexts">dataTableEditor0</value>
+                            <value name="childContexts">dataTableEditorTimeSheets</value>
                           </record>
                         </records>
                       </table>
@@ -1592,7 +1592,7 @@ callFunction(
             </value>
           </record>
           <record>
-            <value name="name">dateTimePicker0</value>
+            <value name="name">dateTimePickerActivityDate</value>
             <value name="type">dateTimePicker</value>
             <value name="parameters">
               <table>
@@ -1699,7 +1699,7 @@ callFunction(
                 </format>
                 <records>
                   <record>
-                    <value name="name">dateTimePicker0</value>
+                    <value name="name">dateTimePickerActivityDate</value>
                     <value name="gridx">1</value>
                     <value name="gridy">1</value>
                     <value name="gridWidth">2</value>
@@ -1786,7 +1786,7 @@ callFunction(
             </value>
           </record>
           <record>
-            <value name="name">timePicker0</value>
+            <value name="name">timePickerDuration</value>
             <value name="type">timePicker</value>
             <value name="parameters">
               <table>
@@ -1879,7 +1879,7 @@ callFunction(
                 </format>
                 <records>
                   <record>
-                    <value name="name">timePicker0</value>
+                    <value name="name">timePickerDuration</value>
                     <value name="gridx">5</value>
                     <value name="gridy">1</value>
                     <value name="overflow">visible</value>
@@ -1929,7 +1929,7 @@ callFunction(
             </value>
           </record>
           <record>
-            <value name="name">comboBox0</value>
+            <value name="name">comboBoxActivity</value>
             <value name="type">comboBox</value>
             <value name="parameters">
               <table>
@@ -2060,7 +2060,7 @@ callFunction(
                 </format>
                 <records>
                   <record>
-                    <value name="name">comboBox0</value>
+                    <value name="name">comboBoxActivity</value>
                     <value name="gridx">6</value>
                     <value name="gridy">1</value>
                     <value name="gridWidth">2</value>
@@ -2138,7 +2138,7 @@ callFunction(
             </value>
           </record>
           <record>
-            <value name="name">textArea0</value>
+            <value name="name">textAreaDescription</value>
             <value name="type">textArea</value>
             <value name="parameters">
               <table>
@@ -2227,7 +2227,7 @@ callFunction(
                 </format>
                 <records>
                   <record>
-                    <value name="name">textArea0</value>
+                    <value name="name">textAreaDescription</value>
                     <value name="gridx">8</value>
                     <value name="gridy">1</value>
                     <value name="gridWidth">2</value>
@@ -2274,7 +2274,7 @@ callFunction(
             </value>
           </record>
           <record>
-            <value name="name">textArea1</value>
+            <value name="name">textAreaResult</value>
             <value name="type">textArea</value>
             <value name="parameters">
               <table>
@@ -2363,7 +2363,7 @@ callFunction(
                 </format>
                 <records>
                   <record>
-                    <value name="name">textArea1</value>
+                    <value name="name">textAreaResult</value>
                     <value name="gridx">10</value>
                     <value name="gridy">1</value>
                     <value name="gridWidth">2</value>
@@ -2410,7 +2410,7 @@ callFunction(
             </value>
           </record>
           <record>
-            <value name="name">button0</value>
+            <value name="name">buttonSaveRecord</value>
             <value name="type">button</value>
             <value name="parameters">
               <table>
@@ -2507,7 +2507,7 @@ callFunction(
                 </format>
                 <records>
                   <record>
-                    <value name="name">button0</value>
+                    <value name="name">buttonSaveRecord</value>
                     <value name="gridx">12</value>
                     <value name="gridy">1</value>
                     <value name="overflow">hidden</value>
@@ -2563,7 +2563,7 @@ callFunction(
             </value>
           </record>
           <record>
-            <value name="name">comboBox1</value>
+            <value name="name">comboBoxCompany</value>
             <value name="type">comboBox</value>
             <value name="parameters">
               <table>
@@ -2694,7 +2694,7 @@ callFunction(
                 </format>
                 <records>
                   <record>
-                    <value name="name">comboBox1</value>
+                    <value name="name">comboBoxCompany</value>
                     <value name="gridx">3</value>
                     <value name="gridy">1</value>
                     <value name="gridWidth">2</value>
@@ -2773,7 +2773,7 @@ callFunction(
             </value>
           </record>
           <record>
-            <value name="name">dataTableEditor0</value>
+            <value name="name">dataTableEditorTimeSheets</value>
             <value name="type">dataTableEditor</value>
             <value name="parameters">
               <table>
@@ -2994,7 +2994,7 @@ callFunction(
                 </format>
                 <records>
                   <record>
-                    <value name="name">dataTableEditor0</value>
+                    <value name="name">dataTableEditorTimeSheets</value>
                     <value name="gridx">1</value>
                     <value name="gridy">2</value>
                     <value name="gridWidth">12</value>
@@ -3656,7 +3656,7 @@ callFunction(
                         </format>
                         <records>
                           <record>
-                            <value name="childContexts">htmlSnippet1</value>
+                            <value name="childContexts">htmlSnippet</value>
                           </record>
                           <record>
                             <value name="childContexts">checkBox0</value>
@@ -3712,7 +3712,7 @@ callFunction(
             </value>
           </record>
           <record>
-            <value name="name">htmlSnippet1</value>
+            <value name="name">htmlSnippet</value>
             <value name="type">htmlSnippet</value>
             <value name="parameters">
               <table>
@@ -3799,7 +3799,7 @@ callFunction(
                 </format>
                 <records>
                   <record>
-                    <value name="name">htmlSnippet1</value>
+                    <value name="name">htmlSnippet</value>
                     <value name="gridx">1</value>
                     <value name="gridy">1</value>
                     <value name="gridWidth">2</value>
@@ -3981,7 +3981,7 @@ callFunction(
             </value>
           </record>
           <record>
-            <value name="name">button1</value>
+            <value name="name">buttonLogOut</value>
             <value name="type">button</value>
             <value name="parameters">
               <table>
@@ -4078,7 +4078,7 @@ callFunction(
                 </format>
                 <records>
                   <record>
-                    <value name="name">button1</value>
+                    <value name="name">buttonLogOut</value>
                     <value name="gridx">12</value>
                     <value name="gridy">1</value>
                     <value name="overflow">hidden</value>
@@ -4132,7 +4132,7 @@ callFunction(
             </value>
           </record>
           <record>
-            <value name="name">image0</value>
+            <value name="name">imageLogo</value>
             <value name="type">image</value>
             <value name="parameters">
               <table>
@@ -4216,7 +4216,7 @@ callFunction(
                 </format>
                 <records>
                   <record>
-                    <value name="name">image0</value>
+                    <value name="name">imageLogo</value>
                     <value name="gridx">1</value>
                     <value name="gridy">1</value>
                     <value name="overflow">hidden</value>
@@ -4271,7 +4271,7 @@ callFunction(
             </value>
           </record>
           <record>
-            <value name="name">label0</value>
+            <value name="name">labelAppName</value>
             <value name="type">label</value>
             <value name="parameters">
               <table>
@@ -4342,7 +4342,7 @@ callFunction(
                 </format>
                 <records>
                   <record>
-                    <value name="name">label0</value>
+                    <value name="name">labelAppName</value>
                     <value name="gridx">2</value>
                     <value name="gridy">1</value>
                     <value name="overflow">visible</value>
@@ -4599,7 +4599,7 @@ margin-top:auto;margin-bottom:auto;</value>
                         </format>
                         <records>
                           <record>
-                            <value name="childContexts">dataTableEditor1</value>
+                            <value name="childContexts">dataTableEditorCompanies</value>
                           </record>
                         </records>
                       </table>
@@ -4663,7 +4663,7 @@ margin-top:auto;margin-bottom:auto;</value>
             </value>
           </record>
           <record>
-            <value name="name">dataTableEditor1</value>
+            <value name="name">dataTableEditorCompanies</value>
             <value name="type">dataTableEditor</value>
             <value name="parameters">
               <table>
@@ -4884,7 +4884,7 @@ margin-top:auto;margin-bottom:auto;</value>
                 </format>
                 <records>
                   <record>
-                    <value name="name">dataTableEditor1</value>
+                    <value name="name">dataTableEditorCompanies</value>
                     <value name="gridx">1</value>
                     <value name="gridy">1</value>
                     <value name="gridWidth">12</value>
