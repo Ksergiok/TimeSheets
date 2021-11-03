@@ -406,6 +406,10 @@
         </format>
         <records>
           <record>
+            <value name="resource">users.%.models_groups.TimeSheets</value>
+            <value name="type">group.model</value>
+          </record>
+          <record>
             <value name="resource">users.%.dashboards.TimeSheets</value>
             <value name="type">dashboard</value>
           </record>
@@ -420,10 +424,6 @@
           <record>
             <value name="resource">users.%.models.interface</value>
             <value name="type">model</value>
-          </record>
-          <record>
-            <value name="resource">users.%.models_groups.TimeSheets</value>
-            <value name="type">group.model</value>
           </record>
           <record>
             <value name="resource">users.%.models.eventHandler</value>

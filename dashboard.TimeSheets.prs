@@ -470,10 +470,10 @@
                         </format>
                         <records>
                           <record>
-                            <value name="path">buttonSaveRecord</value>
+                            <value name="path">buttonLogOut</value>
                           </record>
                           <record>
-                            <value name="path">buttonLogOut</value>
+                            <value name="path">buttonSaveRecord</value>
                           </record>
                           <record>
                             <value name="path">checkBox0</value>
@@ -485,10 +485,10 @@
                             <value name="path">comboBoxCompany</value>
                           </record>
                           <record>
-                            <value name="path">dataTableEditorTimeSheets</value>
+                            <value name="path">dataTableEditorCompanies</value>
                           </record>
                           <record>
-                            <value name="path">dataTableEditorCompanies</value>
+                            <value name="path">dataTableEditorTimeSheets</value>
                           </record>
                           <record>
                             <value name="path">dateTimePickerActivityDate</value>
@@ -501,6 +501,9 @@
                           </record>
                           <record>
                             <value name="path">labelAppName</value>
+                          </record>
+                          <record>
+                            <value name="path">labelUserInfo</value>
                           </record>
                           <record>
                             <value name="path">panel0</value>
@@ -550,6 +553,9 @@
                           </record>
                           <record>
                             <value name="childContexts">labelAppName</value>
+                          </record>
+                          <record>
+                            <value name="childContexts">labelUserInfo</value>
                           </record>
                         </records>
                       </table>
@@ -699,7 +705,7 @@
                           <record>
                             <value name="bindingId">6006673503695349760</value>
                             <value name="target">form/checkBox0:style</value>
-                            <value name="expression">{form/checkBox0:state$state} == &quot;selected&quot; ? &quot;margin-top:35px; margin-left:-15px;&quot;:&quot;margin-top:5px; margin-left:-15px;&quot;</value>
+                            <value name="expression">{form/checkBox0:state$state} == &quot;selected&quot; ? &quot;margin-top:35px; margin-left:-15px;&quot;:&quot;margin-top:2px; margin-left:-15px;&quot;</value>
                             <value name="activator">form/checkBox0:updated@</value>
                             <value name="onevent">1</value>
                           </record>
@@ -758,6 +764,12 @@ callFunction(
                             <value name="bindingId">7754237271235262464</value>
                             <value name="target">form/dataTableEditorCompanies:dataTable</value>
                             <value name="expression">{users.admin.models.interface:getCompanies()}</value>
+                            <value name="onstartup">1</value>
+                          </record>
+                          <record>
+                            <value name="bindingId">6071899579173332992</value>
+                            <value name="target">form/labelUserInfo:text</value>
+                            <value name="expression">user()</value>
                             <value name="onstartup">1</value>
                           </record>
                         </records>
@@ -829,7 +841,7 @@ callFunction(
                         <records>
                           <record>
                             <value name="name">fullHD</value>
-                            <value name="description">[object Object]</value>
+                            <value name="description">Full HD</value>
                             <value name="value">1920</value>
                           </record>
                         </records>
@@ -1210,7 +1222,7 @@ callFunction(
                     <value name="gridx">1</value>
                     <value name="gridy">2</value>
                     <value name="gridWidth">12</value>
-                    <value name="overflow">visible</value>
+                    <value name="overflow">hidden</value>
                     <value name="gridBreakpoints">
                       <table>
                         <format maxRecords="2147483647">
@@ -1229,7 +1241,8 @@ callFunction(
                         <records>
                           <record>
                             <value name="breakpoint">fullHD</value>
-                            <value name="containerStyle">gridx:1;gridy:2;gridWidth:12;gridHeight:1;overflow:visible;containerStyle:overflow-y:scroll;padding:10px;;</value>
+                            <value name="containerStyle">gridx:1;gridy:2;gridWidth:12;gridHeight:1;overflow:hidden;containerStyle:overflow-y:hidden;
+padding:10px;border-radius: 20px;border-style:solid;border: 6px double black;;</value>
                           </record>
                         </records>
                       </table>
@@ -1245,7 +1258,8 @@ callFunction(
                         </format>
                       </table>
                     </value>
-                    <value name="containerStyle">overflow-y:scroll;padding:10px;</value>
+                    <value name="containerStyle">overflow-y:hidden;
+padding:10px;border-radius: 20px;border-style:solid;border: 6px double black;</value>
                     <value name="childContexts">
                       <table>
                         <format maxRecords="2147483647">
@@ -3066,10 +3080,10 @@ callFunction(
                             <field description="Action" name="buttonAction" type="S">
                               <selectionValues>
                                 <option description=""/>
-                                <option description="Edit">edit</option>
-                                <option description="Delete">delete</option>
                                 <option description="Cancel">cancel</option>
+                                <option description="Edit">edit</option>
                                 <option description="Apply">apply</option>
+                                <option description="Delete">delete</option>
                               </selectionValues>
                               <defaultValue/>
                             </field>
@@ -3363,32 +3377,32 @@ callFunction(
                             </field>
                             <field description="Header Text Behavior" name="headerTextBehavior" type="S">
                               <selectionValues>
+                                <option description="Word Wrap">wordWrap</option>
                                 <option description="Expand Column">expandColumn</option>
                                 <option description="Ellipsis">ellipsis</option>
-                                <option description="Word Wrap">wordWrap</option>
                               </selectionValues>
                               <defaultValue>expandColumn</defaultValue>
                             </field>
                             <field description="Word Break" name="wordBreak" type="S">
                               <selectionValues>
-                                <option description="Break All">break-all</option>
-                                <option description="Break Word">break-word</option>
                                 <option description="Don&apos;t Break">false</option>
+                                <option description="Break Word">break-word</option>
+                                <option description="Break All">break-all</option>
                               </selectionValues>
                               <defaultValue>false</defaultValue>
                             </field>
                             <field description="Cell Text Horizontal Alignment" name="textAlignHorizontal" type="S">
                               <selectionValues>
-                                <option description="Center">center</option>
                                 <option description="Left">left</option>
+                                <option description="Center">center</option>
                                 <option description="Right">right</option>
                               </selectionValues>
                               <defaultValue>center</defaultValue>
                             </field>
                             <field description="Header Text Horizontal Alignment" name="textAlignHeaderHorizontal" type="S">
                               <selectionValues>
-                                <option description="Center">center</option>
                                 <option description="Left">left</option>
+                                <option description="Center">center</option>
                                 <option description="Right">right</option>
                               </selectionValues>
                               <defaultValue>center</defaultValue>
@@ -4343,10 +4357,10 @@ callFunction(
                 <records>
                   <record>
                     <value name="name">labelAppName</value>
-                    <value name="gridx">2</value>
+                    <value name="gridx">1</value>
                     <value name="gridy">1</value>
                     <value name="overflow">visible</value>
-                    <value name="style">color:grey; font-size:24pt; margin-left:-60px;</value>
+                    <value name="style">color:grey; font-size:24pt; margin-left:80px;</value>
                     <value name="gridBreakpoints">
                       <table>
                         <format maxRecords="2147483647">
@@ -4365,8 +4379,8 @@ callFunction(
                         <records>
                           <record>
                             <value name="breakpoint">fullHD</value>
-                            <value name="style">style:color:grey; font-size:24pt; margin-left:-60px;;</value>
-                            <value name="containerStyle">gridx:2;gridy:1;gridWidth:1;gridHeight:1;overflow:visible;containerStyle:background-color: rgba(0,0,0, 0.0); 
+                            <value name="style">style:color:grey; font-size:24pt; margin-left:80px;;</value>
+                            <value name="containerStyle">gridx:1;gridy:1;gridWidth:1;gridHeight:1;overflow:visible;containerStyle:background-color: rgba(0,0,0, 0.0); 
 margin-top:auto;margin-bottom:auto;;</value>
                           </record>
                         </records>
@@ -4957,10 +4971,10 @@ margin-top:auto;margin-bottom:auto;</value>
                             <field description="Action" name="buttonAction" type="S">
                               <selectionValues>
                                 <option description=""/>
-                                <option description="Edit">edit</option>
-                                <option description="Delete">delete</option>
                                 <option description="Cancel">cancel</option>
+                                <option description="Edit">edit</option>
                                 <option description="Apply">apply</option>
+                                <option description="Delete">delete</option>
                               </selectionValues>
                               <defaultValue/>
                             </field>
@@ -5250,32 +5264,32 @@ margin-top:auto;margin-bottom:auto;</value>
                             </field>
                             <field description="Header Text Behavior" name="headerTextBehavior" type="S">
                               <selectionValues>
+                                <option description="Word Wrap">wordWrap</option>
                                 <option description="Expand Column">expandColumn</option>
                                 <option description="Ellipsis">ellipsis</option>
-                                <option description="Word Wrap">wordWrap</option>
                               </selectionValues>
                               <defaultValue>expandColumn</defaultValue>
                             </field>
                             <field description="Word Break" name="wordBreak" type="S">
                               <selectionValues>
-                                <option description="Break All">break-all</option>
-                                <option description="Break Word">break-word</option>
                                 <option description="Don&apos;t Break">false</option>
+                                <option description="Break Word">break-word</option>
+                                <option description="Break All">break-all</option>
                               </selectionValues>
                               <defaultValue>false</defaultValue>
                             </field>
                             <field description="Cell Text Horizontal Alignment" name="textAlignHorizontal" type="S">
                               <selectionValues>
-                                <option description="Center">center</option>
                                 <option description="Left">left</option>
+                                <option description="Center">center</option>
                                 <option description="Right">right</option>
                               </selectionValues>
                               <defaultValue>center</defaultValue>
                             </field>
                             <field description="Header Text Horizontal Alignment" name="textAlignHeaderHorizontal" type="S">
                               <selectionValues>
-                                <option description="Center">center</option>
                                 <option description="Left">left</option>
+                                <option description="Center">center</option>
                                 <option description="Right">right</option>
                               </selectionValues>
                               <defaultValue>center</defaultValue>
@@ -5329,6 +5343,127 @@ margin-top:auto;margin-bottom:auto;</value>
                     <value name="resizableColumn">0</value>
                     <value name="confirmActionDelete">0</value>
                     <value name="confirmActionAdd">0</value>
+                  </record>
+                </records>
+              </table>
+            </value>
+          </record>
+          <record>
+            <value name="name">labelUserInfo</value>
+            <value name="type">label</value>
+            <value name="parameters">
+              <table>
+                <format maxRecords="1" minRecords="1">
+                  <fields>
+                    <field description="Name" name="name" nullable="true" type="S">
+                      <validators contentType="base64">HFIeXHcrXl5OYW1lIG1heSBjb250YWluIG9ubHkgTGF0aW4gbGV0dGVycywgZGlnaXRzLCBhbmQgdW5kZXJzY29yZXMd</validators>
+                      <defaultValue>
+                        <nullValue/>
+                      </defaultValue>
+                    </field>
+                    <field description="Column" name="gridx" type="I">
+                      <defaultValue>0</defaultValue>
+                    </field>
+                    <field description="Row" name="gridy" type="I">
+                      <defaultValue>0</defaultValue>
+                    </field>
+                    <field description="Column Span" name="gridWidth" type="I">
+                      <validators contentType="base64">HEweMSAyMTQ3NDgzNjQ3HQ==</validators>
+                      <defaultValue>1</defaultValue>
+                    </field>
+                    <field description="Row Span" name="gridHeight" type="I">
+                      <validators contentType="base64">HEweMSAyMTQ3NDgzNjQ3HQ==</validators>
+                      <defaultValue>1</defaultValue>
+                    </field>
+                    <field description="Content Overflow" name="overflow" type="S">
+                      <selectionValues>
+                        <option description="Auto">auto</option>
+                        <option description="Hidden">hidden</option>
+                        <option description="Scroll">scroll</option>
+                        <option description="Unset">unset</option>
+                        <option description="Visible">visible</option>
+                      </selectionValues>
+                      <defaultValue>auto</defaultValue>
+                    </field>
+                    <field description="Visible" name="visible" type="B">
+                      <defaultValue>1</defaultValue>
+                    </field>
+                    <field description="Custom Classes" name="customClasses" type="S">
+                      <defaultValue/>
+                    </field>
+                    <field description="Element CSS Style" editor="text" name="style" type="S">
+                      <defaultValue/>
+                    </field>
+                    <field description="Breakpoints" name="gridBreakpoints" type="T">
+                      <defaultValue>
+                        <table>
+                          <format maxRecords="2147483647"/>
+                        </table>
+                      </defaultValue>
+                    </field>
+                    <field description="visibleChildren" name="visibleChildren" type="T">
+                      <defaultValue>
+                        <table>
+                          <format maxRecords="2147483647"/>
+                        </table>
+                      </defaultValue>
+                    </field>
+                    <field description="Container Style" editor="textarea" name="containerStyle" type="S">
+                      <defaultValue/>
+                    </field>
+                    <field description="Text" name="text" nullable="true" type="S">
+                      <defaultValue>
+                        <nullValue/>
+                      </defaultValue>
+                    </field>
+                  </fields>
+                </format>
+                <records>
+                  <record>
+                    <value name="name">labelUserInfo</value>
+                    <value name="gridx">10</value>
+                    <value name="gridy">1</value>
+                    <value name="gridWidth">2</value>
+                    <value name="style">color:grey; font-size:18pt; </value>
+                    <value name="gridBreakpoints">
+                      <table>
+                        <format maxRecords="2147483647">
+                          <fields>
+                            <field description="Breakpoint" name="breakpoint" nullable="true" type="S">
+                              <defaultValue>default</defaultValue>
+                            </field>
+                            <field description="Style" name="style" nullable="true" type="S">
+                              <defaultValue/>
+                            </field>
+                            <field description="Container Style" name="containerStyle" nullable="true" type="S">
+                              <defaultValue/>
+                            </field>
+                          </fields>
+                        </format>
+                        <records>
+                          <record>
+                            <value name="breakpoint">fullHD</value>
+                            <value name="style">style:color:grey; font-size:18pt; ;</value>
+                            <value name="containerStyle">gridx:10;gridy:1;gridWidth:2;gridHeight:1;overflow:auto;containerStyle:background-color: rgba(0,0,0, 0.0); 
+margin-top:auto;margin-bottom:auto;text-align: right;;</value>
+                          </record>
+                        </records>
+                      </table>
+                    </value>
+                    <value name="visibleChildren">
+                      <table>
+                        <format maxRecords="2147483647">
+                          <fields>
+                            <field name="path" type="S">
+                              <defaultValue/>
+                            </field>
+                          </fields>
+                        </format>
+                      </table>
+                    </value>
+                    <value name="containerStyle">background-color: rgba(0,0,0, 0.0); 
+margin-top:auto;margin-bottom:auto;text-align: right;</value>
+                    <value name="text">User</value>
                   </record>
                 </records>
               </table>
