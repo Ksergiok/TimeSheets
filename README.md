@@ -1,3 +1,3 @@
 # TimeSheets
-Pet project on the AggreGate platform
-You may use it as a template for your own projects, check the CSS, bindings etc
+Demo project made on AggreGate Low-code platform.
+It demonstrates the basics of building a custom web application using the built-in UI Builder.
