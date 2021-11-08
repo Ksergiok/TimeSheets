@@ -1,6 +1,6 @@
 # TimeSheets
-Time tracking application.
-Demo project made on AggreGate Low-code Development Platform (LCDP).
+Time tracking application.<p>
+Demo project made on AggreGate Low-code Development Platform (LCDP).<p>
 It demonstrates the basics of building a custom web application using the built-in UI Builder, such as:
 <li>Data storage</li>
 <li>Bindings</li>
