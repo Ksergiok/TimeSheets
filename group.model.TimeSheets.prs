@@ -3,7 +3,7 @@
     <entry>
       <string>replication</string>
       <table>
-        <format maxRecords="9" minRecords="9">
+        <format maxRecords="12" minRecords="12">
           <fields>
             <field description="Property" keyfield="true" name="variable" readonly="true" type="S">
               <help>Name of the variable to apply the replication rule to.</help>
@@ -69,6 +69,18 @@
           <record>
             <value name="variable">granulator</value>
             <value name="description">Granulation</value>
+          </record>
+          <record>
+            <value name="variable">companies</value>
+            <value name="description">companies</value>
+          </record>
+          <record>
+            <value name="variable">activities</value>
+            <value name="description">activities</value>
+          </record>
+          <record>
+            <value name="variable">operations</value>
+            <value name="description">operations</value>
           </record>
         </records>
       </table>

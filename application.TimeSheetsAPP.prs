@@ -45,7 +45,7 @@
           <record>
             <value name="name">TimeSheetsAPP</value>
             <value name="description">TimeSheetsAPP</value>
-            <value name="applicationFolderPath">D:\Applications</value>
+            <value name="applicationFolderPath">C:\Users\Ksergi0k\Documents\GitHub\TimeSheets</value>
           </record>
         </records>
       </table>
