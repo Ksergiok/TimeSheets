@@ -1,3 +1,8 @@
 # TimeSheets
-Pet project on the AggreGate platform
-You may use it as a template for your own projects, check the CSS, bindings etc
+Time tracking application.<p>
+Demo project made on AggreGate Low-code Development Platform (LCDP).<p>
+It demonstrates the basics of building a custom web application using the built-in UI Builder, such as:
+<li>Data storage</li>
+<li>Bindings</li>
+<li>User interface (React)</li>
+<li>Usage of CSS</li>
